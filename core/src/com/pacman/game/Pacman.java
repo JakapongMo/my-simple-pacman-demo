@@ -29,5 +29,5 @@ public class Pacman {
 		position.x += SPEED * DIR_OFFSETS[dir][0];
 	    position.y += SPEED * DIR_OFFSETS[dir][1];
 	}
-
+	
 }

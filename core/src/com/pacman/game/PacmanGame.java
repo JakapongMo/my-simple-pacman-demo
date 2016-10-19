@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class PacmanGame extends Game {
-	public SpriteBatch batch;	
+	public SpriteBatch batch; //ประกาศตัวแปร	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();

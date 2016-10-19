@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 public class GameScreen extends ScreenAdapter {
 
 	World world;
+	WorldRenderer worldRenderer; 
 	private PacmanGame pacmanGame;
 	private Texture pacmanImg;
 	private Pacman pacman;
@@ -25,11 +26,13 @@ public class GameScreen extends ScreenAdapter {
 		update(delta);
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		SpriteBatch batch = pacmanGame.batch;
-		batch.begin();
-		Vector2 pos = pacman.getPosition();
-		batch.draw(pacmanImg,pos.x,pos.y);
-		batch.end();
+	//	SpriteBatch batch = pacmanGame.batch;
+	//	batch.begin();
+	//	Vector2 pos = pacman.getPosition();
+	//	batch.draw(pacmanImg,pos.x,pos.y);
+	//	batch.end();
+		worldRenderer = new WorldRenderer(pacmanGame, world);
+		worldRenderer.render(delta);
     }
 	private void update(float delta){
 		if(Gdx.input.isKeyPressed(Keys.UP)) {
