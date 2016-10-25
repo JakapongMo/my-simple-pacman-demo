@@ -20,8 +20,8 @@ public class MazeRenderer {
 		batch.begin();
 		for(int r=0; r<maze.getHeight(); r++){
 			for(int c=0; c< maze.getWidth();c++){
-				int x = c*40;
-				int y = PacmanGame.HEIGHT - (r*40)-40;
+				int x = c*WorldRenderer.BLOCK_SIZE;
+				int y = PacmanGame.HEIGHT - (r*WorldRenderer.BLOCK_SIZE)-WorldRenderer.BLOCK_SIZE;
 				
 				if(maze.hasWallAt(r,c)){
 					batch.draw(wallImage, x, y);
@@ -30,6 +30,7 @@ public class MazeRenderer {
 				}
 			}
 		}
+	
 		batch.end();
 	}
 }
