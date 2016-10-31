@@ -41,7 +41,11 @@ public class Pacman {
 	    position.y += SPEED * DIR_OFFSETS[dir][1];
 	}
 	public void update(){
+		Maze maze = this.maze;
 		if(isAtCenter()){
+			if(maze.hasDotAt(getRow(), getColumn())){
+				maze.removeDotAt(getRow(), getColumn());
+			}
 			if(canMoveInDirection(nextDirection)){
 				currentDirection = nextDirection;
 			}else{
