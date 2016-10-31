@@ -11,7 +11,16 @@ public class World {
 		this.pacmanGame = pacmanGame;
 		pacman = new Pacman(60,60,this);
 		score = 0;
+		registerDotEattenListener();
 			
+	}
+	private void registerDotEattenListener() {
+		pacman.registerDotEattenListener(new Pacman.DotEattenListener(){
+		@Override
+		public void notifyDotEatten(){
+			score +=1;
+		}
+		});
 	}
 	public void increaseScore(){
 		score +=1;

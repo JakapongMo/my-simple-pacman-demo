@@ -1,11 +1,15 @@
 package com.pacman.game;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class Pacman {
 	private int currentDirection;
 	private int nextDirection;
 	private World world;
+	private List<DotEattenListener> listeners;
 	
 	
     public static final int DIRECTION_UP = 1;
@@ -29,6 +33,7 @@ public class Pacman {
 		currentDirection = DIRECTION_STILL;
 		nextDirection = DIRECTION_STILL;
 		this.world = world;
+		listeners = new LinkedList<DotEattenListener>();
 	}
 	public void setNextDirection(int dir){
 		nextDirection = dir;
@@ -45,7 +50,7 @@ public class Pacman {
 		if(isAtCenter()){
 			if(maze.hasDotAt(getRow(), getColumn())){
 				maze.removeDotAt(getRow(), getColumn());
-				world.increaseScore();
+				notifyDotEattenListeners();
 			}
 			if(canMoveInDirection(nextDirection)){
 				currentDirection = nextDirection;
@@ -64,11 +69,11 @@ public class Pacman {
 	private boolean canMoveInDirection(int dir){
 		Maze maze = world.getMaze();
 		int newRow = (int)getRow()+ DIR_OFFSETS[nextDirection][1];
-		int newCol = (int)getColumn()+  DIR_OFFSETS[nextDirection][0];
+		int newCol = (int)getColumn()+ DIR_OFFSETS[nextDirection][0];
 		if(maze.hasWallAt(newRow, newCol)){
 			return false;
 		}
-			return true;
+		return true;
 	}
 	private int getRow(){
 		return ((int)position.y)/ WorldRenderer.BLOCK_SIZE;
@@ -76,4 +81,15 @@ public class Pacman {
 	private int getColumn(){
 		return ((int)position.x)/ WorldRenderer.BLOCK_SIZE;
 	}
+	public interface DotEattenListener{
+		void notifyDotEatten();
+	}
+	public void registerDotEattenListener(DotEattenListener l) {
+        listeners.add(l);
+    }
+    private void notifyDotEattenListeners() {
+        for(DotEattenListener l : listeners) {
+            l.notifyDotEatten();
+        }
+    }
 }
