@@ -6,10 +6,10 @@ public class World {
 	private Maze maze;
 	
 	World(PacmanGame pacmanGame){
+		maze = new Maze();
 		this.pacmanGame = pacmanGame;
-		
-		pacman = new Pacman(60,60);
-		maze = new Maze();	
+		pacman = new Pacman(60,60,maze);
+			
 	}
 	Maze getMaze(){
 		return maze;

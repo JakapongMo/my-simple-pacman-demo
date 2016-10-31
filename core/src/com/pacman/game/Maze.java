@@ -1,7 +1,7 @@
 package com.pacman.game;
 
 public class Maze {
-	private String[] MAP = new String []{
+	String[] MAP = new String []{
 			"####################",
 	        "#..................#",
 	        "#.###.###..###.###.#",
